@@ -1,0 +1,16 @@
+{
+  "name": "wedriver.js-poc",
+  "version": "1.0.0",
+  "description": "webdriver js - poc",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Angel Hermon",
+  "license": "ISC",
+  "devDependencies": {
+    "config": "^1.19.0",
+    "selenium-webdriver": "^2.48.2",
+    "webdriverio": "^3.4.0"
+  }
+}
