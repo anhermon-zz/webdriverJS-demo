@@ -7,6 +7,7 @@ var webdriver = require('selenium-webdriver');
 var driver;
 var actionBot;
 var LoginPage = require('../pages/loginPage');
+
 describe('Basic test', function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     beforeEach(function() {
@@ -19,10 +20,11 @@ describe('Basic test', function () {
 //		driver.get('https://webintg.cloudshare.com/Login.aspx');
         new LoginPage(driver)
             .navigate()
-            .assertPageObject(function(page) {
-                page.doLogin('angel+cm2@cloudshare.com', '123456', function(page) {
-                    done();
-                });
-        });
+            .assertPageObject()
+            .doLogin('user', 'password')
+            .doValidateTabs()
+            .doLogout();
+        
+        driver.quit().then(done);
     });
 });

@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "config": "^1.19.0",
+    "mocha": "^2.3.4",
     "selenium-webdriver": "^2.48.2",
     "webdriverio": "^3.4.0"
   }
