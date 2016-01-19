@@ -1,7 +1,6 @@
 'use strict';
 
 var PageObject = require('./pageObject');
-var WelcomePage = require('./welcomePage');
 var webdriver = require('selenium-webdriver');
 var By = webdriver.By;
 
@@ -62,6 +61,7 @@ class LoginPage extends PageObject {
         return this;
     }  
     clickLoginButton(){
+        let WelcomePage = require('./welcomePage');
         this.loginButton.click();
         return new WelcomePage(this.driver);
     }

@@ -1,7 +1,6 @@
 'use strict';
 
 var PageObject = require('./pageObject');
-var LoginPage  = require('./loginPage');
 var webdriver  = require('selenium-webdriver');
 var By = webdriver.By;
 
@@ -80,9 +79,10 @@ class WelcomePage extends PageObject{
                    .validateReportsTab();
     }
     doLogout() {
+        let LoginPage  = require('./loginPage');
         this.clickUserMenuButton()
              .clickLogoutButton();
-//        return new LoginPage(this.driver);
+        return new LoginPage(this.driver);
         
     }
     //low lvl function

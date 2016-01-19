@@ -8,23 +8,57 @@ var driver;
 var actionBot;
 var LoginPage = require('../pages/loginPage');
 
-describe('Basic test', function () {
+var Jasmine = require('jasmine');
+var SpecReporter = require('jasmine-spec-reporter');
+jasmine.getEnv().addReporter(new SpecReporter({
+  displayStacktrace: 'none',
+  displayFailuresSummary: true,
+  displayPendingSummary: true,
+  displaySuccessfulSpec: true,
+  displayFailedSpec: true,
+  displayPendingSpec: true,
+  displaySpecDuration: false,
+  displaySuiteNumber: false,
+  colors: {
+    success: 'green',
+    failure: 'red',
+    pending: 'yellow'
+  },
+  prefixes: {
+    success: 'V ',
+    failure: 'X ',
+    pending: '* '
+  },
+  customProcessors: []
+}));
+
+
+describe('Basic test suite', function () {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    beforeEach(function() {
-        driver = require('../util/webdriver')();
-	});
-    afterEach(function() {
-        driver.quit();
-	}); 
+    driver = require('../util/webdriver')();
+    var loginPage;
+    var welcomePage;
+//    beforeEach(function() {
+//	});
+//    afterEach(function() {
+//        console.log('after');
+//	}); 
     it('should be on correct page', function (done) {
-//		driver.get('https://webintg.cloudshare.com/Login.aspx');
-        new LoginPage(driver)
+        loginPage = new LoginPage(driver)
             .navigate()
             .assertPageObject()
-            .doLogin('user', 'password')
-            .doValidateTabs()
-            .doLogout();
-        
-        driver.quit().then(done);
+            .then(done);
+    });
+    it('should login successfully', function (done) {
+        welcomePage = loginPage.doLogin('angel+cm2@cloudshare.com', '123456')
+                               .then(done);
+    });
+    it('tabs should be visible', function (done) {
+        welcomePage = welcomePage.doValidateTabs()
+                                 .then(done);
+    });
+    it('tabs should logout successfully', function (done) {
+        loginPage = welcomePage.doLogout()
+                               .then(done);
     });
 });
