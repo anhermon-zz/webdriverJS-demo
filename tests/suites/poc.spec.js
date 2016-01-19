@@ -50,7 +50,7 @@ describe('Basic test suite', function () {
             .then(done);
     });
     it('should login successfully', function (done) {
-        welcomePage = loginPage.doLogin('angel+cm2@cloudshare.com', '123456')
+        welcomePage = loginPage.doLogin('user', 'password')
                                .then(done);
     });
     it('tabs should be visible', function (done) {
